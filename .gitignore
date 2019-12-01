@@ -1,3 +1,10 @@
 data/*
 __pycache__
+.pytest_cache
 .vscode
+
+cell_images
+
+trained_networks/*
+!trained_networks/best.json
+!trained_networks/best.pt
