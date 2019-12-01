@@ -10,8 +10,8 @@ class RawCNN(nn.Module):
         self.conv2 = nn.Conv2d(50, 100, 5)
         self.conv3 = nn.Conv2d(100, 200, 5)
 
-        self.fc1 = nn.Linear(2*2*200, 512)
-        self.fc2 = nn.Linear(512, 2)
+        self.fc1 = nn.Linear(2*2*200, 200)
+        self.fc2 = nn.Linear(200, 2)
 
     def forward(self, x):
         x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
@@ -36,9 +36,9 @@ def initialize_model(model_name, num_classes, feature_extract, use_pretrained=Tr
     input_size = 0
 
     if model_name == "resnet":
-        """ Resnet18
+        """ Resnet50
         """
-        model_ft = models.resnet18(pretrained=use_pretrained)
+        model_ft = models.resnet50(pretrained=use_pretrained)
         set_parameter_requires_grad(model_ft, feature_extract)
         num_ftrs = model_ft.fc.in_features
         model_ft.fc = nn.Linear(num_ftrs, num_classes)
